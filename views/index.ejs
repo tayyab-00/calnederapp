@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Scheduler</title>
+</head>
+<body>
+  <h1>Meeting Scheduler</h1>
+  <ul>
+    <% Object.entries(slots).forEach(([time, count]) => { %>
+      <li>
+        Time: <%= time %>, Available Slots: <%= count %>
+        <% if (count === 0) { %>
+          <span style="color: red;"> (All slots booked)</span>
+        <% } %>
+      </li>
+    <% }); %>
+  </ul>
+  <form action="/book" method="post">
+    <label for="time">Select a time:</label>
+    <select name="time" id="time">
+      <% Object.entries(slots).forEach(([time, count]) => { %>
+        <% if (count > 0) { %>
+          <option value="<%= time %>"><%= time %></option>
+        <% } %>
+      <% } %>
+    </select>
+    <br>
+    <label for="name">Your Name:</label>
+    <input type="text" name="name" required>
+    <br>
+    <label for="email">Your Email:</label>
+    <input type="email" name="email" required>
+    <br>
+    <button type="submit">Book Meeting</button>
+  </form>
+</body>
+</html>

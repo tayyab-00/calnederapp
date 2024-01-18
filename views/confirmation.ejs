@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Confirmation</title>
+</head>
+<body>
+  <h1>Meeting Scheduled</h1>
+  <p>Hi <%= name %>,</p>
+  <p>You have successfully scheduled a meeting at <%= time %>.</p>
+  <p>An email with the meeting details has been sent to <%= email %>.</p>
+  <form action="/cancel" method="post">
+    <input type="hidden" name="time" value="<%= time %>">
+    <button type="submit">Cancel Meeting</button>
+  </form>
+</body>
+</html>
